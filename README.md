@@ -3,11 +3,11 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2603.09018"><img src="https://img.shields.io/badge/arXiv-2603.09018-b31b1b.svg" alt="arXiv"></a>
   <a href="https://huggingface.co/coming-soon/Meissa-4B"><img src="https://img.shields.io/badge/HuggingFace-Meissa--4B-yellow" alt="HuggingFace Model"></a>
-  <a href="https://huggingface.co/datasets/coming-soon/Meissa-SFT"><img src="https://img.shields.io/badge/HuggingFace-Meissa--SFT-blue" alt="HuggingFace Dataset"></a>
-  <a href="https://github.com/coming-soon/Meissa/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License"></a>
+  <a href="https://huggingface.co/datasets/CYX1998/Meissa-SFT"><img src="https://img.shields.io/badge/HuggingFace-Meissa--SFT-blue" alt="HuggingFace Dataset"></a>
+  <a href="https://github.com/Schuture/Meissa/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License"></a>
 </p>
 
-> [Paper](https://arxiv.org/abs/2603.09018) | [Model (HuggingFace)](https://huggingface.co/coming-soon/Meissa-4B) | [Dataset (HuggingFace)](https://huggingface.co/datasets/coming-soon/Meissa-SFT)
+> [Paper](https://arxiv.org/abs/2603.09018) | [Model (HuggingFace)](https://huggingface.co/coming-soon/Meissa-4B) | [Dataset (HuggingFace)](https://huggingface.co/datasets/CYX1998/Meissa-SFT)
 
 ---
 
@@ -53,7 +53,7 @@ Meissa unifies four heterogeneous medical agent paradigms:
 ### 1. Installation
 
 ```bash
-git clone https://github.com/coming-soon/Meissa.git
+git clone https://github.com/Schuture/Meissa.git
 cd Meissa
 ```
 
