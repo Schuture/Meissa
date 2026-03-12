@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2603.09018"><img src="https://img.shields.io/badge/arXiv-2603.09018-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://https://huggingface.co/CYX1998/Meissa-4B"><img src="https://img.shields.io/badge/HuggingFace-Meissa--4B-yellow" alt="HuggingFace Model"></a>
+  <a href="https://huggingface.co/CYX1998/Meissa-4B"><img src="https://img.shields.io/badge/HuggingFace-Meissa--4B-yellow" alt="HuggingFace Model"></a>
   <a href="https://huggingface.co/datasets/CYX1998/Meissa-SFT"><img src="https://img.shields.io/badge/HuggingFace-Meissa--SFT-blue" alt="HuggingFace Dataset"></a>
   <a href="https://github.com/Schuture/Meissa/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License"></a>
 </p>
