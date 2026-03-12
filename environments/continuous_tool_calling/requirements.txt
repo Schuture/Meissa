@@ -1,0 +1,33 @@
+# Framework I: Continuous Tool Calling
+# Conda environment: medrax
+# Install: pip install -r requirements.txt
+
+# Core LLM orchestration
+langchain-core>=0.3
+langchain-openai>=0.2
+langchain-community>=0.3
+langgraph>=0.2
+openai>=1.0
+
+# Model inference
+transformers>=4.40
+accelerate>=0.26
+torch>=2.0
+torchvision
+
+# Chest X-ray tools
+torchxrayvision>=1.0
+scikit-image>=0.19
+pydicom>=2.0
+pylibjpeg>=1.0
+
+# Utilities
+python-dotenv
+pillow>=9.0
+numpy
+tqdm
+pydantic>=2.0
+scikit-learn
+
+# UI (optional, for Gradio web interface)
+gradio>=4.0

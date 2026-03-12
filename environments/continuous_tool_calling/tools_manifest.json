@@ -1,0 +1,304 @@
+{
+  "format_version": 1,
+  "tools_dir": "${PROJECT_ROOT}/MedRAX/medrax/tools",
+  "tools": [
+    {
+      "name": "chest_xray_classifier",
+      "description": "A tool that analyzes chest X-ray images and classifies them for 18 different pathologies. Input should be the path to a chest X-ray image file. Output is a dictionary of pathologies and their predicted probabilities (0 to 1). Pathologies include: Atelectasis, Cardiomegaly, Consolidation, Edema, Effusion, Emphysema, Enlarged Cardiomediastinum, Fibrosis, Fracture, Hernia, Infiltration, Lung Lesion, Lung Opacity, Mass, Nodule, Pleural Thickening, Pneumonia, and Pneumothorax. Higher values indicate a higher likelihood of the condition being present.",
+      "python_class": "_medrax_tools_classification.ChestXRayClassifierTool",
+      "args_schema": {
+        "description": "Input for chest X-ray analysis tools. Only supports JPG or PNG images.",
+        "properties": {
+          "image_path": {
+            "description": "Path to the radiology image file, only supports JPG or PNG images",
+            "title": "Image Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "image_path"
+        ],
+        "title": "ChestXRayInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "dicom_processor",
+      "description": "Processes DICOM medical image files and converts them to standard image format. No tool supports dicom natively, so this tool is used to convert dicom to png. Handles window/level adjustments and proper scaling. Input: Path to DICOM file and optional window/level parameters. Output: Path to processed image file and DICOM metadata.",
+      "python_class": "_medrax_tools_dicom.DicomProcessorTool",
+      "args_schema": {
+        "description": "Input schema for the DICOM Processor Tool.",
+        "properties": {
+          "dicom_path": {
+            "description": "Path to the DICOM file",
+            "title": "Dicom Path",
+            "type": "string"
+          },
+          "window_center": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Window center for contrast adjustment",
+            "title": "Window Center"
+          },
+          "window_width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Window width for contrast adjustment",
+            "title": "Window Width"
+          }
+        },
+        "required": [
+          "dicom_path"
+        ],
+        "title": "DicomProcessorInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "xray_phrase_grounding",
+      "description": "Locates and visualizes specific medical findings in chest X-ray images. Takes a chest X-ray image and medical phrase to locate (e.g., 'Pleural effusion', 'Cardiomegaly'). Returns bounding box coordinates in format [x_topleft, y_topleft, x_bottomright, y_bottomright] where each value is between 0-1 representing relative position in the image, a visualization of the finding's location, and confidence metadata. Example input: {'image_path': '/path/to/xray.png', 'phrase': 'Pleural effusion', 'max_new_tokens': 300}",
+      "python_class": "_medrax_tools_grounding.XRayPhraseGroundingTool",
+      "args_schema": {
+        "description": "Input schema for the XRay Phrase Grounding Tool. Only supports JPG or PNG images.",
+        "properties": {
+          "image_path": {
+            "description": "Path to the frontal chest X-ray image file, only supports JPG or PNG images",
+            "title": "Image Path",
+            "type": "string"
+          },
+          "phrase": {
+            "description": "Medical finding or condition to locate in the image (e.g., 'Pleural effusion')",
+            "title": "Phrase",
+            "type": "string"
+          },
+          "max_new_tokens": {
+            "default": 300,
+            "description": "Maximum number of new tokens to generate",
+            "title": "Max New Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "image_path",
+          "phrase"
+        ],
+        "title": "XRayPhraseGroundingInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "llava_med_qa",
+      "description": "A tool that answers questions about biomedical images and general medical questions using LLaVA-Med. While it can process chest X-rays, it may not be as reliable for detailed chest X-ray analysis. Input should be a question and optionally a path to a medical image file.",
+      "python_class": "_medrax_tools_llava_med.LlavaMedTool",
+      "args_schema": {
+        "description": "Input for the LLaVA-Med Visual QA tool. Only supports JPG or PNG images.",
+        "properties": {
+          "question": {
+            "description": "The question to ask about the medical image",
+            "title": "Question",
+            "type": "string"
+          },
+          "image_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Path to the medical image file (optional), only supports JPG or PNG images",
+            "title": "Image Path"
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "title": "LlavaMedInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "chest_xray_report_generator",
+      "description": "A tool that analyzes chest X-ray images and generates comprehensive radiology reports containing both detailed findings and impression summaries. Input should be the path to a chest X-ray image file. Output is a structured report with both detailed observations and key clinical conclusions.",
+      "python_class": "_medrax_tools_report_generation.ChestXRayReportGeneratorTool",
+      "args_schema": {
+        "description": "Input for chest X-ray analysis tools. Only supports JPG or PNG images.",
+        "properties": {
+          "image_path": {
+            "description": "Path to the radiology image file, only supports JPG or PNG images",
+            "title": "Image Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "image_path"
+        ],
+        "title": "ChestXRayInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "chest_xray_segmentation",
+      "description": "Segments chest X-ray images to specified anatomical structures. Available organs: Left/Right Clavicle (collar bones), Left/Right Scapula (shoulder blades), Left/Right Lung, Left/Right Hilus Pulmonis (lung roots), Heart, Aorta, Facies Diaphragmatica (diaphragm), Mediastinum (central cavity), Weasand (esophagus), and Spine. Returns segmentation visualization and comprehensive metrics. Let the user know the area is not accurate unless input has been DICOM.",
+      "python_class": "_medrax_tools_segmentation.ChestXRaySegmentationTool",
+      "args_schema": {
+        "description": "Input schema for the Chest X-ray Segmentation Tool.",
+        "properties": {
+          "image_path": {
+            "description": "Path to the chest X-ray image file to be segmented",
+            "title": "Image Path",
+            "type": "string"
+          },
+          "organs": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "List of organs to segment. If None, all available organs will be segmented. Available organs: Left/Right Clavicle, Left/Right Scapula, Left/Right Lung, Left/Right Hilus Pulmonis, Heart, Aorta, Facies Diaphragmatica, Mediastinum, Weasand, Spine",
+            "title": "Organs"
+          }
+        },
+        "required": [
+          "image_path"
+        ],
+        "title": "ChestXRaySegmentationInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "image_visualizer",
+      "description": "Displays images to users with optional titles and descriptions. Input: Path to image file and optional display parameters. Output: Dict with image path and metadata.",
+      "python_class": "_medrax_tools_utils.ImageVisualizerTool",
+      "args_schema": {
+        "description": "Input schema for the Image Visualizer Tool. Only supports JPG or PNG images.",
+        "properties": {
+          "image_path": {
+            "description": "Path to the image file to display, only supports JPG or PNG images",
+            "title": "Image Path",
+            "type": "string"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional title to display above the image",
+            "title": "Title"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Optional description to display below the image",
+            "title": "Description"
+          },
+          "figsize": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": [
+              10,
+              10
+            ],
+            "description": "Optional figure size as (width, height) in inches",
+            "title": "Figsize"
+          },
+          "cmap": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": "rgb",
+            "description": "Optional colormap to use for displaying the image",
+            "title": "Cmap"
+          }
+        },
+        "required": [
+          "image_path"
+        ],
+        "title": "ImageVisualizerInput",
+        "type": "object"
+      }
+    },
+    {
+      "name": "chest_xray_expert",
+      "description": "A versatile tool for analyzing chest X-rays. Can perform multiple tasks including: visual question answering, report generation, abnormality detection, comparative analysis, anatomical description, and clinical interpretation. Input should be paths to X-ray images and a natural language prompt describing the analysis needed.",
+      "python_class": "_medrax_tools_xray_vqa.XRayVQATool",
+      "args_schema": {
+        "description": "Input schema for the CheXagent Tool.",
+        "properties": {
+          "image_paths": {
+            "description": "List of paths to chest X-ray images to analyze",
+            "items": {
+              "type": "string"
+            },
+            "title": "Image Paths",
+            "type": "array"
+          },
+          "prompt": {
+            "description": "Question or instruction about the chest X-ray images",
+            "title": "Prompt",
+            "type": "string"
+          },
+          "max_new_tokens": {
+            "default": 512,
+            "description": "Maximum number of tokens to generate in the response",
+            "title": "Max New Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "image_paths",
+          "prompt"
+        ],
+        "title": "XRayVQAToolInput",
+        "type": "object"
+      }
+    }
+  ]
+}
