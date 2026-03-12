@@ -25,7 +25,7 @@ authors:
   - family-names: Yuille
     given-names: Alan
 preferred-citation:
-  type: conference-paper
+  type: article
   title: "Meissa: Multi-modal Medical Agentic Intelligence"
   authors:
     - family-names: Chen
@@ -38,5 +38,5 @@ preferred-citation:
       given-names: Zongwei
     - family-names: Yuille
       given-names: Alan
-  collection-title: "European Conference on Computer Vision (ECCV)"
+  journal: "arXiv preprint arXiv:2603.09018"
   year: 2026
