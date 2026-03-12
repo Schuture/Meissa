@@ -7,7 +7,7 @@
   <a href="https://github.com/Schuture/Meissa/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License"></a>
 </p>
 
-> [Paper](https://arxiv.org/abs/2603.09018) | [Model (HuggingFace)](https://https://huggingface.co/CYX1998/Meissa-4B) | [Dataset (HuggingFace)](https://huggingface.co/datasets/CYX1998/Meissa-SFT)
+> [Paper](https://arxiv.org/abs/2603.09018) | [Model (HuggingFace)](https://huggingface.co/CYX1998/Meissa-4B) | [Dataset (HuggingFace)](https://huggingface.co/datasets/CYX1998/Meissa-SFT)
 
 ---
 
@@ -24,13 +24,14 @@ Multi-modal large language models (MM-LLMs) have shown strong performance in med
 
 Trained on ~40K curated trajectories, Meissa **matches or exceeds proprietary frontier agents in 10 of 16 evaluation settings** across 13 medical benchmarks spanning radiology, pathology, and clinical reasoning. With **~25× fewer parameters** than Gemini-3, Meissa operates fully offline with **~22× lower end-to-end latency** compared to API-based deployment.
 
-![Overview](assets/fig1_overview.png)
+<!-- ![Overview](assets/fig1_overview.png) -->
 
 ---
 
 ## News
 
-- **[2026-03-12]** Code, model, and data released.
+- **[2026-XX]** Meissa accepted at ECCV 2026.
+- **[2026-XX]** Code, model, and data released.
 
 ---
 
@@ -62,13 +63,6 @@ Each framework requires its own conda environment due to conflicting dependencie
 # Framework I: Continuous Tool Calling
 conda create -n medrax python=3.10 && conda activate medrax
 pip install -r environments/continuous_tool_calling/requirements.txt
-
-# Framework I also needs separate envs for CheXagent and MAIRA-2 tool servers:
-conda create -n medrax_chexagent_env python=3.10 && conda activate medrax_chexagent_env
-pip install -r tool_servers/requirements_chexagent.txt
-
-conda create -n medrax_maira2_env python=3.10 && conda activate medrax_maira2_env
-pip install -r tool_servers/requirements_maira2.txt
 
 # Framework II: Interleaved Thinking with Images
 conda create -n tool-server python=3.10 && conda activate tool-server
@@ -117,21 +111,14 @@ export OPENAI_API_KEY="dummy"
 
 ### 4. (Framework I only) Start External Tool Servers
 
-Framework I's chest X-ray pipeline calls CheXagent and MAIRA-2 as remote tool servers. These are large models that run on separate GPUs:
+Framework I's XRayVQATool and XRayPhraseGroundingTool call [CheXagent](https://huggingface.co/StanfordAIMI/CheXagent-2-3b) and [MAIRA-2](https://huggingface.co/microsoft/maira-2) as remote HTTP servers. These are large models that run on separate GPUs. You can deploy them using any standard model serving framework (e.g., vLLM, FastAPI), then point Meissa to them:
 
 ```bash
-# CheXagent — chest X-ray VQA (requires ~20GB GPU memory)
-python tool_servers/chexagent_server.py --host 0.0.0.0 --port 19101
-
-# MAIRA-2 — phrase grounding (requires ~28GB GPU memory)
-python tool_servers/maira2_server.py --host 0.0.0.0 --port 19102
-
-# Point the framework to the servers
 export CHEXAGENT_SERVER_URL="http://<host>:19101"
 export MAIRA2_SERVER_URL="http://<host>:19102"
 ```
 
-If these servers are not available, Framework I will fall back to loading the models locally (requires sufficient GPU memory).
+If these environment variables are not set, Framework I will fall back to loading the models locally (requires sufficient GPU memory).
 
 ### 5. Run Demos
 
@@ -152,9 +139,8 @@ bash scripts/demo_clinical_simulation.sh           # Framework IV
 
 ```
 Meissa/
-├── meissa/                          # Unified inference interface
-│   ├── inference.py                 # Entry point (routes to 4 environments)
-│   └── router.py                    # Complexity router (Tier 1/2/3)
+├── meissa/                          # Python package
+│   └── __init__.py
 │
 ├── environments/
 │   ├── continuous_tool_calling/     # Framework I (8 radiology tools)
@@ -163,22 +149,17 @@ Meissa/
 │   └── clinical_simulation/         # Framework IV (doctor-patient sim)
 │
 ├── data/
-│   ├── augmentation/                # 8-step data diversification pipeline
-│   └── sft_samples/                 # Publicly releasable SFT data by framework
-│       ├── continuous_tool_calling/ # README only (MIMIC data restricted)
-│       ├── interleaved_thinking_images/ # PathVQA, SLAKE, VQArad samples
-│       ├── multi_agent_collaboration/   # PubMedQA samples
-│       └── clinical_simulation/     # README only (MIMIC data restricted)
+│   └── sft_samples/                 # MIMIC reconstruction instructions (READMEs)
+│       ├── continuous_tool_calling/ # MIMIC-CXR-VQA reconstruction
+│       └── clinical_simulation/     # MIMIC-IV reconstruction
 │
 ├── training/
 │   └── configs/                     # LLaMA-Factory training configs
 │
 ├── scripts/                         # Demo and evaluation shell scripts
-└── docs/                            # Detailed documentation
-    ├── data.md
-    ├── training.md
-    ├── eval.md
-    └── environments.md
+│
+│   # Each directory contains its own README.md with detailed documentation
+
 ```
 
 ---
@@ -234,7 +215,7 @@ Meissa/
 
 ## Reproduce Main Results
 
-See [docs/eval.md](docs/eval.md) for full instructions. Quick commands:
+See [scripts/EVALUATION.md](scripts/EVALUATION.md) for full instructions. Quick commands:
 
 ```bash
 # Evaluate Framework II on PathVQA (no restricted data needed)
@@ -243,7 +224,7 @@ bash scripts/eval_interleaved_thinking_images_pathvqa.sh
 # Evaluate Framework III on PubMedQA (no restricted data needed)
 bash scripts/eval_multi_agent_collaboration_pubmedqa.sh
 
-# For MIMIC-CXR-VQA and MIMIC-IV: see docs/data.md for PhysioNet access
+# For MIMIC-CXR-VQA and MIMIC-IV: see data/README.md for PhysioNet access
 bash scripts/eval_continuous_tool_calling_mimic_cxr_vqa.sh   # requires MIMIC-CXR
 bash scripts/eval_clinical_simulation_mimic_iv.sh              # requires MIMIC-IV
 ```
@@ -261,7 +242,7 @@ bash scripts/eval_clinical_simulation_mimic_iv.sh              # requires MIMIC-
 
 ## Data
 
-See [docs/data.md](docs/data.md) for complete instructions.
+See [data/README.md](data/README.md) for complete instructions.
 
 ### Evaluation Benchmarks
 
@@ -282,17 +263,16 @@ See [docs/data.md](docs/data.md) for complete instructions.
 
 | Data Type | Source | Access |
 |-----------|--------|--------|
-| SFT trajectories (PathVQA, SLAKE, VQA-RAD, MedQA, PubmedQA) | This repo + HuggingFace | Open |
-| SFT trajectories (MIMIC-CXR-VQA, MIMIC-IV) | Reconstructible via scripts | Requires PhysioNet |
-| Raw Gemini-generated traces | — | Not released (Google ToS) |
+| SFT trajectories (25,018 samples) | [CYX1998/Meissa-SFT](https://huggingface.co/datasets/CYX1998/Meissa-SFT) | Open |
+| SFT trajectories (MIMIC, 18,192 samples) | Reconstructible via scripts | Requires PhysioNet |
 
-**Total training samples:** ~42K (three-tier stratified: 8.2K direct + 9.8K enhanced + 23.9K agentic)
+**Total training samples:** 43,210 (three-tier stratified: 8.2K direct + 9.8K enhanced + 23.9K agentic)
 
 ---
 
 ## Training
 
-See [docs/training.md](docs/training.md) for full instructions.
+See [training/README.md](training/README.md) for full instructions.
 
 The released model is trained with [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) using LoRA on Qwen3-VL-4B-Instruct.
 
