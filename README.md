@@ -30,8 +30,7 @@ Trained on ~40K curated trajectories, Meissa **matches or exceeds proprietary fr
 
 ## News
 
-- **[2026-XX]** Meissa accepted at ECCV 2026.
-- **[2026-XX]** Code, model, and data released.
+- **[2026-03-12]** Code, model, and data released.
 
 ---
 
