@@ -8,7 +8,7 @@ This document describes how to reproduce the Meissa training from scratch.
 
 1. **LLaMA-Factory** (>=0.9.0): https://github.com/hiyouga/LLaMA-Factory
 2. **Base model**: `Qwen/Qwen3-VL-4B-Instruct` (auto-downloaded from HuggingFace)
-3. **GPU**: 4× A100 80GB recommended; minimum 2× A100 for reduced batch size
+3. **GPU**: 8× A6000 48GB recommended; minimum 4× A5000 24GB for reduced batch size and context length
 4. **Data**: Prepare training data following [data/README.md](../data/README.md)
 
 Install LLaMA-Factory:
@@ -102,8 +102,8 @@ The pre-merged model is available at HuggingFace: `CYX1998/Meissa-4B`
 
 | Resource | Amount |
 |----------|--------|
-| GPUs | 4× A100 80GB |
-| Training time | ~12 hours (combined) |
+| GPUs | 8× A6000 48GB |
+| Training time | ~12 hours |
 | Training samples | ~43K |
-| GPU memory | ~72GB per GPU (bf16 + LoRA) |
+| GPU memory | ~30GB per GPU (bf16 + LoRA) |
 
