@@ -1,3 +1,5 @@
+![Meissa](figures/logo.png)
+
 # Meissa: Multi-modal Medical Agentic Intelligence
 
 <p align="center">
