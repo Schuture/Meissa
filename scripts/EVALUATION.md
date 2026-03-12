@@ -8,7 +8,7 @@ This document describes how to run evaluations for all four frameworks.
 
 - Meissa-4B model downloaded (see README for HuggingFace link)
 - For MIMIC benchmarks: PhysioNet access (see [data/README.md](../data/README.md))
-- GPU: 24GB+ VRAM (single A100 for inference)
+- GPU: 24GB+ VRAM (single A5000 or better for inference)
 
 Set the model path:
 ```bash
@@ -31,8 +31,8 @@ export MIMIC_CXR_JPG_ROOT=/path/to/mimic-cxr-jpg/2.1.0
 bash scripts/eval_continuous_tool_calling_mimic_cxr_vqa.sh
 ```
 
-**Expected GPU**: 32GB (tools load additional specialist models)
-**Estimated time**: ~4 hours on A100
+**Expected GPU**: 24GB for Meissa, 2x 12GB for VQA/report generation tools, 24 GB for LLaVA-Med
+**Estimated time**: ~4 hours on A5000
 
 The evaluation script runs the 8-tool agent on the MIMIC-CXR-VQA test set and computes soft-match accuracy with medical synonym normalization.
 
@@ -48,8 +48,8 @@ The evaluation script runs the 8-tool agent on the MIMIC-CXR-VQA test set and co
 bash scripts/eval_interleaved_thinking_images_pathvqa.sh
 ```
 
-**Expected GPU**: 24GB
-**Estimated time**: ~2 hours on A100
+**Expected GPU**: 24GB for Meissa, 24GB for BiomedParse and SAM2
+**Estimated time**: ~2 hours on A5000
 
 Additional benchmarks (require setup):
 ```bash
@@ -76,7 +76,7 @@ bash scripts/eval_multi_agent_collaboration_pubmedqa.sh
 ```
 
 **Expected GPU**: 24GB
-**Estimated time**: ~1 hour on A100
+**Estimated time**: ~0.5 hour on A5000
 
 Additional benchmarks:
 ```bash
@@ -102,7 +102,7 @@ bash scripts/eval_clinical_simulation_mimic_iv.sh
 ```
 
 **Expected GPU**: 24GB
-**Estimated time**: ~3 hours on A100
+**Estimated time**: ~2 hours on A5000
 
 ---
 
@@ -127,11 +127,11 @@ bash scripts/eval_all.sh --full
 
 | Benchmark | Framework | GPU Memory | Estimated Time |
 |-----------|-----------|-----------|----------------|
-| MIMIC-CXR-VQA | I | 32GB | ~4h |
-| PathVQA | II | 24GB | ~2h |
-| SLAKE | II | 24GB | ~1h |
-| VQArad | II | 24GB | ~30min |
-| PubMedQA | III | 24GB | ~1h |
+| MIMIC-CXR-VQA | I | 4x24GB | ~4h |
+| PathVQA | II | 2x24GB | ~3h |
+| SLAKE | II | 2x24GB | ~2h |
+| VQArad | II | 2x24GB | ~30min |
+| PubMedQA | III | 24GB | ~30min |
 | MedQA | III | 24GB | ~2h |
 | MIMIC-IV | IV | 24GB | ~3h |
 
