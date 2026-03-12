@@ -1,0 +1,17 @@
+# Framework III: Multi-Agent Collaboration
+# Conda environment: mdagents
+# Install: pip install -r requirements.txt
+
+# LLM clients
+openai>=1.0           # OpenAI-compatible API (vLLM)
+google-generativeai   # Gemini API (for data generation only)
+
+# CLI display
+prettytable>=3.0
+pptree>=3.0
+termcolor>=2.0
+
+# Utilities
+tqdm
+pillow>=9.0
+requests
