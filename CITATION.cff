@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use Meissa, please cite it as below."
+type: software
+title: "Meissa: Multi-modal Medical Agentic Intelligence"
+abstract: >
+  Meissa is a lightweight 4B-parameter medical multi-modal LLM that brings
+  full agentic capability offline. It unifies four heterogeneous medical
+  agent environments (Continuous Tool Calling, Interleaved Thinking with
+  Images, Multi-Agent Collaboration, and Multi-turn Clinical Simulation)
+  through unified trajectory modeling, three-tier stratified supervision,
+  and prospective-retrospective trajectory supervision.
+license: Apache-2.0
+repository-code: "https://github.com/Schuture/Meissa"
+version: "1.0.0"
+date-released: "2026-03-12"
+authors:
+  - family-names: Chen
+    given-names: Yixiong
+  - family-names: Bai
+    given-names: Xinyi
+  - family-names: Pan
+    given-names: Yue
+  - family-names: Zhou
+    given-names: Zongwei
+  - family-names: Yuille
+    given-names: Alan
+preferred-citation:
+  type: conference-paper
+  title: "Meissa: Multi-modal Medical Agentic Intelligence"
+  authors:
+    - family-names: Chen
+      given-names: Yixiong
+    - family-names: Bai
+      given-names: Xinyi
+    - family-names: Pan
+      given-names: Yue
+    - family-names: Zhou
+      given-names: Zongwei
+    - family-names: Yuille
+      given-names: Alan
+  collection-title: "European Conference on Computer Vision (ECCV)"
+  year: 2026
