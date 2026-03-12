@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Logs
+logs/
+*.log
+slurm_logs/
+slurm-*.out
+
+# Temp files
+temp/
+*.tmp
+nohup.out
+
+# Environment
+.env
+.env.*
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model weights (too large for git)
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Claude Code
+CLAUDE.md
+.claude/
+
+# Tool call logs
+environments/continuous_tool_calling/logs/
+
+# SFT training data (hosted on HuggingFace: CYX1998/Meissa-SFT)
+data/sft_samples/*.jsonl
+data/sft_samples/**/*.jsonl
+
+# Data augmentation scripts (internal tooling, not part of the release)
+data/augmentation/
+
+# Large eval result files
+environments/interleaved_thinking_images/tool_server/tf_eval/models/llava/eval/table/results/
