@@ -320,6 +320,13 @@ Related works:
   organization={PMLR}
 }
 
+@article{su2025openthinkimg,
+  title={Openthinkimg: Learning to think with images via visual tool reinforcement learning},
+  author={Su, Zhaochen and Li, Linjie and Song, Mingyang and Hao, Yunzhuo and Yang, Zhengyuan and Zhang, Jun and Chen, Guanjie and Gu, Jiawei and Li, Juntao and Qu, Xiaoye and others},
+  journal={arXiv preprint arXiv:2505.08617},
+  year={2025}
+}
+
 @article{kim2024mdagents,
   title={Mdagents: An adaptive collaboration of llms for medical decision-making},
   author={Kim, Yubin and Park, Chanwoo and Jeong, Hyewon and Chan, Yik S and Xu, Xuhai and McDuff, Daniel and Lee, Hyeonhoon and Ghassemi, Marzyeh and Breazeal, Cynthia and Park, Hae W},
@@ -350,4 +357,4 @@ Related works:
 
 ## Acknowledgements
 
-We thank the teams behind [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL), [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), [MedRAX](https://github.com/bowang-lab/MedRAX), [MDAgents](https://github.com/mitmedialab/MDAgents), and [MedAgentSim](https://github.com/MohammadAlmansoori/MedAgentSim) for their open-source contributions.
+We thank the teams behind [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL), [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), [MedRAX](https://github.com/bowang-lab/MedRAX), [OpenThinkIMG](https://github.com/OpenThinkIMG/OpenThinkIMG) [MDAgents](https://github.com/mitmedialab/MDAgents), and [MedAgentSim](https://github.com/MohammadAlmansoori/MedAgentSim) for their open-source contributions.
