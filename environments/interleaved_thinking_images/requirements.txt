@@ -1,0 +1,30 @@
+# Framework II: Interleaved Thinking with Images
+# Two conda environments are required:
+#
+#   tool-server  — visual tool server (SAM, BioMedParse, etc.)
+#   vllm         — serve the Meissa model via OpenAI-compatible API
+#
+# Install for tool server: pip install -r requirements.txt
+# Install for model server: pip install vllm
+
+# Model inference
+torch>=2.0
+torchvision
+transformers>=4.40
+accelerate>=0.26
+
+# Data loading
+datasets>=2.0
+pillow>=9.0
+numpy
+tqdm
+
+# Tool server web framework
+fastapi>=0.100
+uvicorn>=0.20
+flask>=2.0
+requests
+pydantic>=2.0
+
+# OpenAI-compatible client
+openai>=1.0
