@@ -1,0 +1,8 @@
+task_name: "slake"
+# dataset_path: ${DATA_ROOT}/SLAKE/train.json
+dataset_path: ${DATA_ROOT}/SLAKE/test.json
+image_root: ${DATA_ROOT}/SLAKE/imgs
+num_sample: null       # or null for full dataset
+dataset_type: "unique"
+generation_config:
+  max_length: 4096

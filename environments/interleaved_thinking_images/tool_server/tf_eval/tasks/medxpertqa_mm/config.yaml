@@ -1,0 +1,15 @@
+task_name: "medxpertqa_mm"
+
+dataset_path: ${DATA_ROOT}/MedXpertQA/MM/test.jsonl
+image_root: ${DATA_ROOT}/MedXpertQA/images
+
+dev_path: ${DATA_ROOT}/MedXpertQA/MM/dev.jsonl
+num_shots: 5
+
+# set to null for full test; you can cap later if you want
+num_sample: null
+seed: 42
+
+dataset_type: "unique"
+generation_config:
+  max_length: 4096

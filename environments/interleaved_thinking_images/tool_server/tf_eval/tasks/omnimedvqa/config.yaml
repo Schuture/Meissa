@@ -1,0 +1,15 @@
+task_name: "omnimedvqa"
+
+# OmniMedVQA root dir (contains OmniMedVQA/Images and OmniMedVQA/QA_information)
+dataset_root: ${DATA_ROOT}/OmniMedVQA/OmniMedVQA
+
+# only open-access
+qa_dir: QA_information/Open-access
+
+# fixed shuffle seed and sample count
+seed: 42
+num_sample: 5000
+
+dataset_type: "unique"
+generation_config:
+  max_length: 4096

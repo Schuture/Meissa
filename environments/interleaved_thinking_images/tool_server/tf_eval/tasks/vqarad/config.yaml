@@ -1,0 +1,7 @@
+task_name: "vqarad"
+# dataset_path: ${DATA_ROOT}/vqa-rad/data/vqarad_train.json
+dataset_path: ${DATA_ROOT}/vqa-rad/data/vqarad_test.json
+num_sample: null  # or null for full dataset
+dataset_type: "unique"
+generation_config:
+  max_length: 4096

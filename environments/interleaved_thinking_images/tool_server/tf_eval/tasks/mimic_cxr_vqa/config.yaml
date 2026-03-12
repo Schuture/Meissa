@@ -1,0 +1,7 @@
+task_name: "mimic_cxr_vqa"
+# dataset_path: ${DATA_ROOT}/mimic-ext-mimic-cxr-vqa/1.0.0/MIMIC-Ext-MIMIC-CXR-VQA/dataset/train.json
+dataset_path: ${DATA_ROOT}/mimic-ext-mimic-cxr-vqa/1.0.0/MIMIC-Ext-MIMIC-CXR-VQA/dataset/test.json
+num_sample: 1000  # 10000 for training and 1000 for eval
+dataset_type: "unique"
+generation_config:
+  max_length: 4096

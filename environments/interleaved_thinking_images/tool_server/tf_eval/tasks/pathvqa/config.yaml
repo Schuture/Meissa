@@ -1,0 +1,7 @@
+task_name: "pathvqa"
+# dataset_path: ${PATHVQA_ROOT}/data/pathvqa_train.json
+dataset_path: ${PATHVQA_ROOT}/data/pathvqa_test_yesno.json
+num_sample: null  # null for all samples
+dataset_type: "unique"
+generation_config:
+  max_length: 4096
