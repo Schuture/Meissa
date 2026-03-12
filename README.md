@@ -38,6 +38,8 @@ Trained on ~40K curated trajectories, Meissa **matches or exceeds proprietary fr
 
 ## Agent Environments
 
+![Environments](figures/environments.png)
+
 Meissa unifies four heterogeneous medical agent paradigms:
 
 | Framework | Paradigm | Key Benchmark | Related Work |
