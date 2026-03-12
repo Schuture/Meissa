@@ -1,0 +1,55 @@
+# -------- basic paths --------
+base_dir: ${PROJECT_ROOT}/OpenThinkIMG/tool_server/tool_workers
+log_folder: ${PROJECT_ROOT}/OpenThinkIMG/tool_server/tool_workers/logs/server_log
+
+# these fields are kept for compatibility
+default_calculate_gpus: 1
+default_calculate_cpus: 16
+default_control_cpus: 2
+default_control_gpus: 0
+retry_interval: 1
+request_timeout: 30
+
+# -------- controller --------
+controller_config:
+  worker_name: controller
+  job_name: controller
+  calculate_type: control
+  conda_env: "tool-server"
+  cmd:
+    script-addr: ./online_workers/controller.py
+    port: 25001
+    host: "0.0.0.0"
+
+# -------- tool workers --------
+tool_worker_config:
+  # 只保留 SAM2 作为在线工具
+  - SegmentRegionAroundPoint:
+      worker_name: SegmentRegionAroundPoint
+      job_name: sam2
+      calculate_type: calculate
+      conda_env: "tool-server"
+      cuda_visible_devices: "0"  # 确保这里是你想要跑 SAM 的显卡 ID
+      cmd:
+        script-addr: ./online_workers/SAMAroundPoint_worker.py
+        port: 25036
+        host: "0.0.0.0"
+        # 确保下面的路径在你的机器上是真实存在的
+        sam2_checkpoint: ${DATA_ROOT}/sam2_weights/sam2_hiera_large.pt
+        # Config 必须只写文件名 (Hydra 会自动去 python 库里找)
+        sam2_model_cfg: sam2_hiera_l.yaml
+
+  - BioMedParseTextSeg:
+      worker_name: BioMedParseTextSeg
+      job_name: biomedparse
+      calculate_type: calculate
+      conda_env: "biomedparse"
+      cuda_visible_devices: "0"
+      cmd:
+        script-addr: ./online_workers/BioMedParseTextSeg_worker.py
+        port: 25037
+        host: "0.0.0.0"
+        biomedparse_ckpt: ${DATA_ROOT}/biomedparse_weights/biomedparse_v1.pt
+        # 建议写绝对路径，避免 worker 工作目录不对导致找不到 config
+        biomedparse_cfg: ${PROJECT_ROOT}/BiomedParse/configs/biomedparse_inference.yaml
+        biomedparse_repo_root: ${PROJECT_ROOT}/BiomedParse
