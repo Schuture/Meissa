@@ -2,12 +2,12 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2603.09018"><img src="https://img.shields.io/badge/arXiv-2603.09018-b31b1b.svg" alt="arXiv"></a>
-  <a href="https://huggingface.co/coming-soon/Meissa-4B"><img src="https://img.shields.io/badge/HuggingFace-Meissa--4B-yellow" alt="HuggingFace Model"></a>
+  <a href="https://https://huggingface.co/CYX1998/Meissa-4B"><img src="https://img.shields.io/badge/HuggingFace-Meissa--4B-yellow" alt="HuggingFace Model"></a>
   <a href="https://huggingface.co/datasets/CYX1998/Meissa-SFT"><img src="https://img.shields.io/badge/HuggingFace-Meissa--SFT-blue" alt="HuggingFace Dataset"></a>
   <a href="https://github.com/Schuture/Meissa/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License"></a>
 </p>
 
-> [Paper](https://arxiv.org/abs/2603.09018) | [Model (HuggingFace)](https://huggingface.co/coming-soon/Meissa-4B) | [Dataset (HuggingFace)](https://huggingface.co/datasets/CYX1998/Meissa-SFT)
+> [Paper](https://arxiv.org/abs/2603.09018) | [Model (HuggingFace)](https://https://huggingface.co/CYX1998/Meissa-4B) | [Dataset (HuggingFace)](https://huggingface.co/datasets/CYX1998/Meissa-SFT)
 
 ---
 
@@ -93,8 +93,8 @@ pip install vllm
 ```python
 from transformers import AutoModelForCausalLM, AutoProcessor
 
-model = AutoModelForCausalLM.from_pretrained("coming-soon/Meissa-4B", trust_remote_code=True)
-processor = AutoProcessor.from_pretrained("coming-soon/Meissa-4B", trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("CYX1998/Meissa-4B", trust_remote_code=True)
+processor = AutoProcessor.from_pretrained("CYX1998/Meissa-4B", trust_remote_code=True)
 ```
 
 ### 3. Serve the Model with vLLM
@@ -103,7 +103,7 @@ Meissa uses [vLLM](https://github.com/vllm-project/vllm) as the inference backen
 
 ```bash
 python -m vllm.entrypoints.openai.api_server \
-    --model coming-soon/Meissa-4B \
+    --model CYX1998/Meissa-4B \
     --port 8877 \
     --max-model-len 8192 \
     --gpu-memory-utilization 0.85 \
