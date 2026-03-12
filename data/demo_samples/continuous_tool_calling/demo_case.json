@@ -1,0 +1,28 @@
+{
+  "framework": "Framework I: Continuous Tool Calling",
+  "source_dataset": "MIMIC-CXR-VQA",
+  "source_idx": 6285,
+  "image_note": "MIMIC-CXR image — requires PhysioNet credentialing to access. Download from https://physionet.org/content/mimic-cxr-jpg/",
+  "image_relative_path": "p12/p12706984/s51503517/676ac094-48152b11-2b1fcd07-7abfc405-fa272730.jpg",
+  "question": "What are all the anatomical findings present in either the right apical zone or the left mid lung zone?",
+  "ground_truth": ["lung opacity"],
+  "model_answer": "lung opacity",
+  "is_correct": true,
+  "tools_called": [
+    {
+      "step": 1,
+      "tool": "chest_xray_report_generator",
+      "purpose": "Generate structured findings report to survey the full image"
+    },
+    {
+      "step": 2,
+      "tool": "chest_xray_expert",
+      "purpose": "Targeted VQA query about the right apical and left mid zones"
+    },
+    {
+      "step": 3,
+      "tool": "xray_phrase_grounding",
+      "purpose": "Visually localize 'lung opacity' with bounding box coordinates"
+    }
+  ]
+}

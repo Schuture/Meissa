@@ -1,0 +1,18 @@
+{
+  "framework": "Framework II: Interleaved Thinking with Images",
+  "source_dataset": "PathVQA",
+  "source_idx": "pathvqa_10927",
+  "image_file": "pathvqa_demo.jpg",
+  "image_source": "PathVQA dataset (open access) — Anitschkow cell from rheumatic heart disease slide",
+  "question": "What shows owl-eye appearance of central chromatin mass and perinuclear halo?",
+  "ground_truth": "Anitschkow cell",
+  "is_correct": true,
+  "tool_call_trace": [
+    {"round": 0, "tool": "ZoomInSubfigure", "param": [110, 700, 400, 990], "result": "Zoomed in successfully to region [42, 279, 225, 417]."},
+    {"round": 1, "tool": "ZoomInSubfigure", "param": [200, 600, 500, 900], "result": "Zoomed in successfully to region [...]"},
+    {"round": 2, "tool": "ZoomInSubfigure", "param": [400, 200, 700, 500], "result": "Zoomed in successfully to region [...]"},
+    {"round": 3, "tool": "ZoomInSubfigure", "param": [700, 110, 990, 400], "result": "Zoomed in successfully to region [353, 33, 527, 178]."},
+    {"round": 4, "tool": "Terminate", "param": "Anitschkow cell", "result": "Final answer"}
+  ],
+  "notes": "Model uses iterative ZoomInSubfigure calls to locate the labeled cell in the histology diagram inset, demonstrating interleaved thinking with visual tools."
+}

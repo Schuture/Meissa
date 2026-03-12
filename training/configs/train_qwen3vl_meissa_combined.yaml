@@ -1,0 +1,46 @@
+### model
+model_name_or_path: Qwen/Qwen3-VL-4B-Instruct
+template: qwen3_vl
+trust_remote_code: true
+
+### dataset
+dataset: meissa_thinking,meissa_instruct
+dataset_dir: data
+cutoff_len: 6144
+overwrite_cache: true
+overwrite_output_dir: true
+preprocessing_num_workers: 32
+
+### output
+output_dir: outputs/qwen3vl_meissa_combined_4b
+logging_steps: 10
+save_steps: 500
+save_total_limit: 3
+plot_loss: true
+
+### train
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+num_train_epochs: 3
+
+learning_rate: 5.0e-5
+warmup_steps: 100
+weight_decay: 0.0
+lr_scheduler_type: cosine
+max_grad_norm: 1.0
+
+### precision
+bf16: true
+fp16: false
+
+### memory
+gradient_checkpointing: true
+do_eval: false

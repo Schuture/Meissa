@@ -1,0 +1,21 @@
+{
+  "meissa_thinking": {
+    "file_name": "meissa_thinking.jsonl",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images",
+      "system": "system",
+      "tools": "tools"
+    }
+  },
+  "meissa_instruct": {
+    "file_name": "meissa_instruct.jsonl",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images",
+      "system": "system"
+    }
+  }
+}

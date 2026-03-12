@@ -1,0 +1,31 @@
+{
+  "framework": "Framework III: Multi-Agent Collaboration",
+  "source_dataset": "PubMedQA",
+  "source_id": "11481599",
+  "difficulty": "intermediate",
+  "question": "Acute respiratory distress syndrome in children with malignancy--can we predict outcome?",
+  "context": "A study examined peak inspiratory pressure, PEEP, and ventilation index values in pediatric ARDS patients with hemato-oncology malignancy to assess whether early respiratory parameters predict survival.",
+  "ground_truth": "yes",
+  "model_answer": "yes",
+  "is_correct": true,
+  "agent_structure": {
+    "total_agents": 9,
+    "total_messages": 53,
+    "roles": [
+      "Medical Expert (initial assessment)",
+      "Recruiter (selects domain specialists)",
+      "Pediatrician (domain expert)",
+      "Pulmonologist (domain expert)",
+      "Pediatric Critical Care Specialist (domain expert)",
+      "Hematologist/Oncologist (domain expert)",
+      "Critical Care Nurse (domain expert)",
+      "Medical Assistant (synthesis × 2)",
+      "Moderator (final decision)"
+    ]
+  },
+  "example_reasoning": {
+    "Pulmonologist": "The study explicitly states that respiratory data such as peak inspiratory pressure, PEEP, and ventilation index could distinguish outcome by day 3...",
+    "Hematologist": "The study demonstrates that specific respiratory parameters can distinguish survival outcomes by day 3. Additionally, oxygenation efficiency showed significant relationships with outcome as early as day 8.",
+    "Moderator": "Based on expert consensus, respiratory parameters including peak inspiratory pressure, PEEP, and ventilation index can predict outcomes in pediatric ARDS with malignancy. [ANSWER] yes"
+  }
+}

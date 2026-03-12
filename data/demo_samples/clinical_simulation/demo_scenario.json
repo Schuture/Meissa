@@ -1,0 +1,36 @@
+{
+  "source": "MIMIC-IV (open access via HuggingFace: ItsMaxNorm/MedAgentSim-datasets)",
+  "scenario_id": 10,
+  "ground_truth": "Right Lower Lobe Pneumonia",
+  "is_correct": true,
+  "OSCE_Examination": {
+    "Objective_for_Doctor": "Diagnose the patient based on clinical evaluation.",
+    "Patient_Actor": {
+      "Demographics": "65-year-old male",
+      "History": "The patient reports a cough persisting for over three weeks. The cough is mostly dry but occasionally produces white sputum. He has also noticed increasing shortness of breath over the same period, particularly during physical activity. The patient denies fever, chills, or weight loss.",
+      "Symptoms": {
+        "Primary_Symptom": "Persistent dry cough",
+        "Secondary_Symptoms": [
+          "Occasional white sputum",
+          "Shortness of breath with exertion",
+          "No fever",
+          "No weight loss"
+        ]
+      },
+      "Past_Medical_History": "History of hypertension. Previous smoker, quit 10 years ago after smoking a pack a day for 30 years.",
+      "Social_History": "Retired school teacher, lives with spouse.",
+      "Review_of_Systems": "Denies chest pain, hemoptysis, night sweats, or joint pain."
+    },
+    "Physical_Examination_Findings": {
+      "Vitals": {
+        "Note": "Not provided in initial presentation; requested via physical exam"
+      },
+      "Respiratory": "Decreased breath sounds in right lower lung field; wheeze audible in right lung; dullness to percussion in right lower lung field. Trachea midline, no lymphadenopathy."
+    },
+    "Test_Results": {
+      "Chest_X-Ray": "Right lower lobe consolidation consistent with a possible pneumonia. No pleural effusion noted.",
+      "Complete_Blood_Count": "WBC: 8,500 /uL (normal); Hemoglobin: 14.0 g/dL; Platelets: 210,000 /uL"
+    },
+    "Correct_Diagnosis": "Right Lower Lobe Pneumonia"
+  }
+}
