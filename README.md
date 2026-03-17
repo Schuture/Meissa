@@ -305,9 +305,9 @@ llamafactory-cli train training/configs/train_qwen3vl_meissa_combined.yaml
 If you find Meissa useful, please cite:
 
 ```bibtex
-@inproceedings{meissa2026,
+@article{chen2026meissa,
   title={Meissa: Multi-modal Medical Agentic Intelligence},
-  author={Chen, Yixiong and Bai, Xinyi and Pan, Yue and Zhou, Zongwei and Yuille,  Alan},
+  author={Chen, Yixiong and Bai, Xinyi and Pan, Yue and Zhou, Zongwei and Yuille, Alan},
   journal={arXiv preprint arXiv:2603.09018},
   year={2026}
 }
