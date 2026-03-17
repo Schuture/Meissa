@@ -87,10 +87,11 @@ pip install vllm
 ### 2. Download the Model
 
 ```python
-from transformers import AutoModelForCausalLM, AutoProcessor
+from transformers import AutoModelForImageTextToText, AutoProcessor
+import torch
 
-model = AutoModelForCausalLM.from_pretrained("CYX1998/Meissa-4B", trust_remote_code=True)
-processor = AutoProcessor.from_pretrained("CYX1998/Meissa-4B", trust_remote_code=True)
+model = AutoModelForImageTextToText.from_pretrained("CYX1998/Meissa-4B", torch_dtype=torch.bfloat16, device_map="auto")
+processor = AutoProcessor.from_pretrained("CYX1998/Meissa-4B")
 ```
 
 ### 3. Serve the Model with vLLM
